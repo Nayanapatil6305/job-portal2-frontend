@@ -1,7 +1,22 @@
-import React from 'react'
+import { Layout } from "antd";
+import { Outlet } from "react-router-dom";
 
-export default function AuthLayout() {
+const { Content } = Layout;
+
+const AuthLayout: React.FC = () => {
   return (
-    <div>AuthLayout</div>
-  )
-}
+    <Layout style={{ minHeight: "100vh" }}>
+      <Content
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Outlet />
+      </Content>
+    </Layout>
+  );
+};
+
+export default AuthLayout;
