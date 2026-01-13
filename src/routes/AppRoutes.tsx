@@ -25,12 +25,18 @@
 // );
 // }
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Protected from "./Protected";
 
 import UserDashboard from "../dashboards/user/UserDashboard";
 import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
 import AdminDashboard from "../dashboards/admin/AdminDashboard";
+import Homepage from "../wellcomePage/Homepage";
+import Brousejob from "../wellcomePage/Browsejob";
+// import About from "../wellcomePage/About";
+// import Contact from "../wellcomePage/Contact";
+// import Footer from "../wellcomePage/Footer";
+import Browsejob from "../wellcomePage/Browsejob";
 
 export default function AppRoutes() {
   return (
@@ -61,6 +67,21 @@ export default function AppRoutes() {
           </Protected>
         }
       />
-    </Routes>
+    
+     {/* </Routes>  */}
+
+
+       <Route path="/" element={<Homepage />}/>
+       <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route index element={<Navigate to="/home" replace />} />
+
+        <Route path="/home" element={<Homepage/>} />
+        <Route path="/browsejobs" element={<Browsejob/>} />
+        
+        {/* <Route path="/Contact" element={<Contact/>} />
+         <Route path="/footer" element={<Footer/>}/> */}
+       <Route path="*" element={<Navigate to="/home" replace />} />
+</Routes>
+
   );
 }
