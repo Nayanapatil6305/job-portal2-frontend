@@ -32,6 +32,7 @@ import UserDashboard from "../dashboards/user/UserDashboard";
 import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
 import AdminDashboard from "../dashboards/admin/AdminDashboard";
 
+
 export default function AppRoutes() {
   return (
     <Routes>
