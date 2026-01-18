@@ -37,6 +37,9 @@ import Brousejob from "../wellcomePage/Browsejob";
 // import Contact from "../wellcomePage/Contact";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
+import AppLayout from "../layout/AppLayout";
+import AppFooter from "../components/Style/AppFooter";
+import JobDetails from "../dashboards/user/JobDetails";
 
 
 export default function AppRoutes() {
@@ -82,6 +85,17 @@ export default function AppRoutes() {
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/home" replace />} />
+
+  
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/user" element={<UserDashboard />} />
+            <Route path="/recruiter" element={<RecruiterDashboard />} />
+            <Route path="/layout" element={<AppLayout />} />
+            <Route path="/footer" element={<AppFooter/>} />
+
+
+             <Route path="/user/job/:id" element={<JobDetails/>} />
+
 </Routes>
 
   );
