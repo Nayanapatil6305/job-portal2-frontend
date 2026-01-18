@@ -38,6 +38,7 @@ import Brousejob from "../wellcomePage/Browsejob";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
 
+
 export default function AppRoutes() {
   return (
     <Routes>
