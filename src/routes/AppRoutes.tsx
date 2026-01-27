@@ -39,7 +39,8 @@ import Brousejob from "../wellcomePage/Browsejob";
 import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
 import JobDetails from "../dashboards/user/JobDetails";
-
+import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
+import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
 
 export default function AppRoutes() {
   return (
@@ -85,6 +86,11 @@ export default function AppRoutes() {
         <Route path="/home" element={<Homepage/>} />
         <Route path="/browsejobs" element={<Browsejob/>} />
         
+
+      {/* USER ROUTES */}
+      <Route path="/user" element={<UserDashboard />} />
+      <Route path="/user/job/:id" element={<JobDetails />} />
+      <Route path="/user/apply" element={<ApplyJobscreen1 />} />
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/home" replace />} />
@@ -96,7 +102,7 @@ export default function AppRoutes() {
             <Route path="/layout" element={<AppLayout />} />
 
 
-             <Route path="/user/job/:id" element={<JobDetails/>} />
+             {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
 
 </Routes>
 

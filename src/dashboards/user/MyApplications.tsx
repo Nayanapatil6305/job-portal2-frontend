@@ -1,29 +1,24 @@
-// import { Table } from "antd";
+// 
 
 
-// export default function MyApplications() {
-// return (
-// <Table
-// columns={[
-// { title: "Job", dataIndex: "job" },
-// { title: "Status", dataIndex: "status" }
-// ]}
-// dataSource={[{ key: 1, job: "React Dev", status: "Applied" }]}
-// />
-// );
-// }
+import { Card, Typography } from "antd";
+import { jobs } from "../../services/Api";
 
-
-import { Card, List } from "antd";
+const { Title } = Typography;
 
 const MyApplications = () => {
+  const appliedJobs = jobs.slice(0, 2); // dummy applied jobs
+
   return (
-    <Card title="My Applications">
-      <List
-        dataSource={["Frontend Developer", "React Developer","SQL Developer","Python Developer"]}
-        renderItem={(item) => <List.Item>{item}</List.Item>}
-      />
-    </Card>
+    <>
+      <Title level={3}>My Applications</Title>
+
+      {appliedJobs.map(job => (
+        <Card key={job.id} style={{ marginBottom: 16 }} title={job.title}>
+          <p><b>{job.company}</b> - {job.location}</p>
+        </Card>
+      ))}
+    </>
   );
 };
 
