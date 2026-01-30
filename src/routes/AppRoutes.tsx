@@ -38,7 +38,6 @@ import Homepage from "../wellcomePage/Homepage";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
-import AppFooter from "../components/Style/AppFooter";
 import JobDetails from "../dashboards/user/JobDetails";
 // import Login from "../authentication/Login";
 // import Register from "../authentication/Register";
@@ -49,37 +48,38 @@ import JobManagement from "../dashboards/admin/JobManagement";
 import Login from "../components/common/auth/Login";
 import Register from "../components/common/auth/Register";
 
-
+import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
+import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route
+      {/* <Route
         path="/user"
         element={
           <Protected role="USER">
             <UserDashboard />
           </Protected>
         }
-      />
+      /> */}
 
-      <Route
+      {/* <Route
         path="/recruiter"
         element={
           <Protected role="RECRUITER">
             <RecruiterDashboard />
           </Protected>
         }
-      />
+      /> */}
 
-      <Route
+      {/* <Route
         path="/admin"
         element={
           <Protected role="ADMIN">
             <AdminDashboard />
           </Protected>
         }
-      />
+      /> */}
     
      {/* </Routes>  */}
 
@@ -88,9 +88,18 @@ export default function AppRoutes() {
        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route index element={<Navigate to="/home" replace />} />
 
+
+       <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/recuiter" element={<RecruiterDashboard />} />
+       <Route path="/user" element={<UserDashboard />} />
         <Route path="/home" element={<Homepage/>} />
         <Route path="/browsejobs" element={<Browsejob/>} />
         
+
+      {/* USER ROUTES */}
+      <Route path="/user" element={<UserDashboard />} />
+      <Route path="/user/job/:id" element={<JobDetails />} />
+      <Route path="/user/apply" element={<ApplyJobscreen1 />} />
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/home" replace />} />
@@ -100,8 +109,7 @@ export default function AppRoutes() {
             <Route path="/user" element={<UserDashboard />} />
             <Route path="/recruiter" element={<RecruiterDashboard />} />
             <Route path="/layout" element={<AppLayout />} />
-            <Route path="/footer" element={<AppFooter/>} />
-           <Route path="/user/job/:id" element={<JobDetails/>} />
+           {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
 
 
            <Route path="/login" element={<Login />}  />

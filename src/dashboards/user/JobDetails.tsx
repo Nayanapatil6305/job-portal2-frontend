@@ -1,84 +1,82 @@
-import React from "react";
-import { Card, Button, Descriptions, Typography, message } from "antd";
 import { useParams, useNavigate } from "react-router-dom";
+import { Card, Button, Tag, Divider, Descriptions } from "antd";
+import { jobs } from "../../services/Api";
 
-const { Title, Text } = Typography;
-
-interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  experience: string;
-  salary: string;
-  description: string;
-}
-
-const mockJobs: Job[] = [
-  {
-    id: "1",
-    title: "React Developer",
-    company: "TCS",
-    location: "Pune",
-    experience: "1 - 3 Years",
-    salary: "₹5 - 8 LPA",
-    description:
-      "We are looking for a React Developer with knowledge of TypeScript and Ant Design."
-  },
-  {
-    id: "2",
-    title: "Backend Developer",
-    company: "Infosys",
-    location: "Bangalore",
-    experience: "2 - 4 Years",
-    salary: "₹6 - 10 LPA",
-    description:
-      "Strong experience in Node.js, Express, and MongoDB required."
-  }
-];
-
-const JobDetails: React.FC = () => {
-  const { id } = useParams();
+const JobDetails = () => {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const job = mockJobs.find((job) => job.id === id);
-
-  const handleApply = () => {
-    message.success("Job applied successfully!");
-    navigate("/user/jobs");
-  };
+  const job = jobs.find(j => j.id === Number(id));
 
   if (!job) {
-    return <Title level={3}>Job not found</Title>;
+    return <h3>Job not found</h3>;
   }
 
   return (
-    <Card style={{ maxWidth: 900, margin: "20px auto" }}>
-      <Title level={2}>{job.title}</Title>
-      <Text type="secondary">{job.company}</Text>
+    <Card
+      title={job.title}
+      extra={<Tag color="blue">{job.experience}</Tag>}
+      style={{ maxWidth: 800, margin: "auto" }}
+    >
+      {/* BASIC INFO */}
+      <Descriptions bordered column={1}>
+        <Descriptions.Item label="Company">
+          {job.company}
+        </Descriptions.Item>
 
-      <Descriptions bordered column={1} style={{ marginTop: 20 }}>
         <Descriptions.Item label="Location">
           {job.location}
         </Descriptions.Item>
+
         <Descriptions.Item label="Experience">
           {job.experience}
         </Descriptions.Item>
+
         <Descriptions.Item label="Salary">
           {job.salary}
         </Descriptions.Item>
-        <Descriptions.Item label="Job Description">
-          {job.description}
-        </Descriptions.Item>
       </Descriptions>
 
+      <Divider />
+
+      {/* SKILLS */}
+      <h3>Skills Required</h3>
+      {job.skills.map(skill => (
+        <Tag key={skill} color="green" style={{ marginBottom: 8 }}>
+          {skill}
+        </Tag>
+      ))}
+
+      <Divider />
+
+      {/* DESCRIPTION */}
+      <h3>Job Description</h3>
+      <p>{job.description}</p>
+
+
+<p>
+  <b>Status:</b>{" "}
+  <Tag
+    color={
+      job.status === "Approved"
+        ? "green"
+        : job.status === "Rejected"
+        ? "red"
+        : "orange"
+    }
+  >
+    {job.status}
+  </Tag>
+</p>
+      <Divider />
+
+      {/* APPLY BUTTON */}
       <Button
         type="primary"
         size="large"
-        style={{ marginTop: 20 }}
-        onClick={handleApply}
+        onClick={() => navigate("/user/apply")}
       >
-        Apply Job
+        Apply Now
       </Button>
     </Card>
   );
