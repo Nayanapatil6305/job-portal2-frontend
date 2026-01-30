@@ -32,13 +32,22 @@ import UserDashboard from "../dashboards/user/UserDashboard";
 import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
 import AdminDashboard from "../dashboards/admin/AdminDashboard";
 import Homepage from "../wellcomePage/Homepage";
-import Brousejob from "../wellcomePage/Browsejob";
+// import Brousejob from "../wellcomePage/Browsejob";
 // import About from "../wellcomePage/About";
 // import Contact from "../wellcomePage/Contact";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
 import JobDetails from "../dashboards/user/JobDetails";
+// import Login from "../authentication/Login";
+// import Register from "../authentication/Register";
+import ForgetPassword from "../components/common/auth/ForgetPassword";
+import MyApplications from "../dashboards/user/MyApplications";
+import ResumeBuilder from "../dashboards/user/ResumeBuilder";
+import JobManagement from "../dashboards/admin/JobManagement";
+import Login from "../components/common/auth/Login";
+import Register from "../components/common/auth/Register";
+
 import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
 import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
 
@@ -100,9 +109,15 @@ export default function AppRoutes() {
             <Route path="/user" element={<UserDashboard />} />
             <Route path="/recruiter" element={<RecruiterDashboard />} />
             <Route path="/layout" element={<AppLayout />} />
+           {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
 
 
-             {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
+           <Route path="/login" element={<Login />}  />
+           <Route path="/register" element={<Register />} />
+           <Route path="/forgetpassword" element={<ForgetPassword />} />
+           <Route path="/myapplication" element={<MyApplications />} />
+           <Route path="/resumbuilder" element={<ResumeBuilder />} />
+           <Route path="/jobmanagement" element={<JobManagement />} />
 
 </Routes>
 
