@@ -40,12 +40,14 @@ import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
 import AppFooter from "../components/Style/AppFooter";
 import JobDetails from "../dashboards/user/JobDetails";
-import Login from "../authentication/Login";
-import Register from "../authentication/Register";
+// import Login from "../authentication/Login";
+// import Register from "../authentication/Register";
 import ForgetPassword from "../components/common/auth/ForgetPassword";
 import MyApplications from "../dashboards/user/MyApplications";
 import ResumeBuilder from "../dashboards/user/ResumeBuilder";
 import JobManagement from "../dashboards/admin/JobManagement";
+import Login from "../components/common/auth/Login";
+import Register from "../components/common/auth/Register";
 
 
 
@@ -102,12 +104,12 @@ export default function AppRoutes() {
            <Route path="/user/job/:id" element={<JobDetails/>} />
 
 
-           <Route path="/src/components/common/auth" element={<Login />}  />
-           <Route path="/src/components/common/auth" element={<Register />} />
-           <Route path="/src/components/common/auth" element={<ForgetPassword />} />
-           <Route path="/user" element={<MyApplications />} />
-           <Route path="/user" element={<ResumeBuilder />} />
-           <Route path="/admin" element={<JobManagement />} />
+           <Route path="/login" element={<Login />}  />
+           <Route path="/register" element={<Register />} />
+           <Route path="/forgetpassword" element={<ForgetPassword />} />
+           <Route path="/myapplication" element={<MyApplications />} />
+           <Route path="/resumbuilder" element={<ResumeBuilder />} />
+           <Route path="/jobmanagement" element={<JobManagement />} />
 
 </Routes>
 
