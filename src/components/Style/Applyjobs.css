@@ -1,0 +1,142 @@
+/* ===== MAIN PAGE CONTAINER ===== */
+.apply-job-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
+}
+
+/* ===== PAGE TITLE ===== */
+.apply-job-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: #1D4B40;
+}
+
+/* ===== STEPS (PROGRESS BAR) ===== */
+.apply-steps {
+  margin-bottom: 30px;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background-color: #1D4B40 !important;
+  border-color: #1D4B40 !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #1D4B40 !important;
+  border-color: #1D4B40 !important;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: #ffffff !important;
+}
+
+.ant-steps-item-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1D4B40;
+}
+
+/* ===== FORM CARD ===== */
+.steps-content {
+  background: #f4f7f6;
+  padding: 28px;
+  border-radius: 14px;
+  min-height: 340px;
+  /* border-left: 6px solid #1D4B40; */
+}
+
+/* ===== FORM LABELS ===== */
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #1D4B40;
+}
+
+/* ===== INPUTS & SELECT ===== */
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-select-selector,
+.ant-picker {
+  height: 44px !important;
+  border-radius: 10px !important;
+  border: 1px solid #cfd8d6 !important;
+}
+
+.ant-input:focus,
+.ant-select-focused .ant-select-selector {
+  border-color: #1D4B40 !important;
+  box-shadow: 0 0 0 2px rgba(29, 75, 64, 0.15) !important;
+}
+
+.ant-input-textarea textarea {
+  border-radius: 10px;
+}
+
+/* ===== PLACEHOLDER COLOR ===== */
+::placeholder {
+  color: #9aa5a2;
+}
+
+/* ===== BUTTON SECTION ===== */
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+/* PREVIOUS BUTTON */
+.step-actions .ant-btn {
+  height: 44px;
+  padding: 0 34px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+/* PRIMARY BUTTON */
+.ant-btn-primary {
+  background-color: #1D4B40 !important;
+  border-color: #1D4B40 !important;
+}
+
+.ant-btn-primary:hover {
+ background-color: #163a32 !important; 
+  border-color: #163a32 !important;
+}
+
+/* SUBMIT BUTTON (FINAL STEP) */
+.btn-submit {
+  background: linear-gradient(135deg, #1D4B40, #2f7a6a) !important;
+  border: none !important;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ===== FORM SPACING ===== */
+.ant-form-item {
+  margin-bottom: 18px;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .apply-job-container {
+    padding: 20px;
+  }
+
+  .steps-content {
+    padding: 20px;
+  }
+
+  .step-actions {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-actions .ant-btn {
+    width: 100%;
+  }
+}

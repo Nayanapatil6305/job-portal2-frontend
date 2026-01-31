@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Steps, Button, Form, Input, Select, Row, Col } from "antd";
-import "../../App.css";
+import "../../components/Style/Applyjobs.css";
+
+// import Mokdata from "../mockdata/mockData.json";
+
 import { Upload, message } from "antd";
 import { UploadOutlined, VideoCameraOutlined } from "@ant-design/icons";
 

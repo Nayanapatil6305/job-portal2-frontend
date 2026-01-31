@@ -1,138 +1,281 @@
 import React, { useState } from "react";
-import { Table, Input, Select, Button, Modal, Tag, Row, Col } from "antd";
-// import "./EmployeeApplications.css";
-// import { data} from '../Data/MocData';
-import { data } from "../../Data/Mocdata";
-import "../../App.css";
-// import { data } from "react-router-dom";
+import { Button, Input, Select, Modal, Badge, message, Progress, Tag } from "antd";
+import { CheckOutlined, CloseOutlined, LinkedinOutlined, FileTextOutlined } from "@ant-design/icons";
+import "../../components/Style/VeiwAppliction.css";
+// import data from "../mockdata/MockData/data.json";
+import initialData from "../../mockdata/MockData";
+import {Application } from "../../mockdata/MockData";
+
+
 const { Option } = Select;
 
-const ViewApplication: React.FC = () => {
-  const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [searchText, setSearchText] = useState("");
-  const [selectedApp, setSelectedApp] = useState<any>(null);
+// interface Application {
+//   id: number;
+//   name: string;
+//   title: string;
+//   experience: string;
+//   skills: string[];
+//   email: string;
+//   resume: string;
+//   status: "Pending" | "Accepted" | "Rejected";
+//   linkedinUrl: string;
+//   profileStrength: number;
+//   appliedDate: string;
+//   tags: string[];
+// }
 
-//   const data = [
-//     {
-//       key: "1",
-//       name: "Rahul Patil",
-//       job: "Frontend Developer",
-//       date: "12 Jan 2026",
-//       status: "Pending",
-//       email: "rahul@gmail.com",
-//       phone: "9876543210",
-//       linkedin: "https://linkedin.com/in/rahul",
-//       skills: "React, TypeScript, CSS",
-//     },
-//     {
-//       key: "2",
-//       name: "Sneha Deshmukh",
-//       job: "Backend Developer",
-//       date: "10 Jan 2026",
-//       status: "Shortlisted",
-//       email: "sneha@gmail.com",
-//       phone: "9123456780",
-//       linkedin: "https://linkedin.com/in/sneha",
-//       skills: "Node.js, MongoDB",
-//     },
-//   ];
+// const initialData: Application[] = [
+//   {
+//     id: 1,
+//     name: "Vaishnavi Patil",
+//     title: "Frontend Developer",
+//     experience: "2 Years",
+//     skills: ["React", "TypeScript", "CSS"],
+//     email: "vaishnavi@gmail.com",
+//     resume: "Resume_Vaishnavi.pdf",
+//     status: "Pending",
+//     linkedinUrl: "https://www.linkedin.com/in/vaishnavi-patil",
+//     profileStrength: 82,
+//     appliedDate: "Applied 2 days ago",
+//     tags: ["Shortlisted", "Frontend"],
+//   },
+//   {
+//     id: 2,
+//     name: "Rahul Sharma",
+//     title: "Backend Developer",
+//     experience: "3 Years",
+//     skills: ["Node.js", "MongoDB", "Express"],
+//     email: "rahul@gmail.com",
+//     resume: "Resume_Rahul.pdf",
+//     status: "Pending",
+//     linkedinUrl: "https://www.linkedin.com/in/rahul-sharma",
+//     profileStrength: 65,
+//     appliedDate: "Applied 4 days ago",
+//     tags: ["Backend"],
+//   },
+//   {
+//     id: 2,
+//     name: "Rahul Sharma",
+//     title: "Backend Developer",
+//     experience: "3 Years",
+//     skills: ["Node.js", "MongoDB", "Express"],
+//     email: "rahul@gmail.com",
+//     resume: "Resume_Rahul.pdf",
+//     status: "Pending",
+//     linkedinUrl: "https://www.linkedin.com/in/rahul-sharma",
+//     profileStrength: 65,
+//     appliedDate: "Applied 4 days ago",
+//     tags: ["Backend"],
+//   },
+// ];
 
-  const columns = [
-    {
-      title: "Candidate Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Job Applied",
-      dataIndex: "job",
-    },
-    {
-      title: "Applied Date",
-      dataIndex: "date",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      render: (status: string) => (
-        <Tag color={status === "Shortlisted" ? "green" : status === "Rejected" ? "red" : "orange"}>
-          {status}
-        </Tag>
-      ),
-    },
-    {
-      title: "Action",
-      render: (_: any, record: any) => (
-        <Button type="link" onClick={() => setSelectedApp(record)}>
-          View Details
-        </Button>
-      ),
-    },
-  ];
+const ViewAppication = () => {
+  const [applications, setApplications] = useState<Application[]>(initialData);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [experienceFilter, setExperienceFilter] = useState("All");
+  const [sortByStrength, setSortByStrength] = useState("None");
+  const [selectedResume, setSelectedResume] = useState<string | null>(null);
+  const [roleFilter, setRoleFilter] = useState("All");
 
-  const filteredData = data.filter((item) => {
-    const matchStatus = statusFilter === "all" || item.status === statusFilter;
-    const matchSearch =
-      item.name.toLowerCase().includes(searchText.toLowerCase()) ||
-      item.job.toLowerCase().includes(searchText.toLowerCase());
-    return matchStatus && matchSearch;
-  });
+
+  const handleStatusChange = (id: number, status: "Accepted" | "Rejected") => {
+    setApplications((prev) =>
+      prev.map((app) => (app.id === id ? { ...app, status } : app))
+    );
+    message.success(`Application ${status}`);
+  };
+
+  const filteredData = applications
+    .filter((app) => {
+      const matchSearch =
+        app.name.toLowerCase().includes(search.toLowerCase()) ||
+        app.skills.join(" ").toLowerCase().includes(search.toLowerCase());
+
+      const matchStatus =
+        statusFilter === "All" || app.status === statusFilter;
+
+      const experienceYears = parseInt(app.experience);
+      const matchExperience =
+        experienceFilter === "All" ||
+        (experienceFilter === "0-1" && experienceYears <= 1) ||
+        (experienceFilter === "1-3" && experienceYears > 1 && experienceYears <= 3) ||
+        (experienceFilter === "3+" && experienceYears > 3);
+
+        
+  const matchRole =
+    roleFilter === "All" || app.title === roleFilter;
+     
+
+      return matchSearch && matchStatus && matchExperience &&matchRole ;
+
+    })
+    .sort((a, b) => {
+      if (sortByStrength === "HighToLow") return b.profileStrength - a.profileStrength;
+      if (sortByStrength === "LowToHigh") return a.profileStrength - b.profileStrength;
+      return 0;
+    });
 
   return (
-    <div className="employee-container">
-      <h2 className="page-title">Employee – View Applications</h2>
+    <div className="linkedin-container">
+      {/* Sidebar */}
+      <aside className="sidebar">
+        <h3>Job Details</h3>
+        
+        <p><strong>Total Applicants:</strong> {applications.length}</p>
 
-      {/* Search & Filter Section */}
-      <Row gutter={16} className="filter-section">
-        <Col xs={24} md={12}>
+        <h4>Role</h4>
+<Select
+  value={roleFilter}
+  onChange={(value) => setRoleFilter(value)}
+  className="filter-select"
+>
+  <Option value="All">All Roles</Option>
+  <Option value="Frontend Developer">Frontend Developer</Option>
+  <Option value="Backend Developer">Backend Developer</Option>
+  <Option value="Software Developer">Software Developer</Option>
+</Select>
+
+
+        <h4>Status</h4>
+        <Select
+          value={statusFilter}
+          onChange={(value) => setStatusFilter(value)}
+          className="filter-select"
+        >
+          <Option value="All">All</Option>
+          <Option value="Pending">Pending</Option>
+          <Option value="Accepted">Accepted</Option>
+          <Option value="Rejected">Rejected</Option>
+        </Select>
+
+        <h4>Experience</h4>
+        <Select
+          value={experienceFilter}
+          onChange={(value) => setExperienceFilter(value)}
+          className="filter-select"
+        >
+          <Option value="All">All</Option>
+          <Option value="0-1">0–1 Years</Option>
+          <Option value="1-3">1–3 Years</Option>
+          <Option value="3+">3+ Years</Option>
+        </Select>
+
+        <h4>Sort By</h4>
+        <Select
+          value={sortByStrength}
+          onChange={(value) => setSortByStrength(value)}
+          className="filter-select"
+        >
+          <Option value="None">None</Option>
+          <Option value="HighToLow">Match Strength ↑</Option>
+          <Option value="LowToHigh">Match Strength ↓</Option>
+        </Select>
+      </aside>
+
+      {/* Main Content */}
+      <main className="content">
+        <div className="search-bar">
           <Input
-            placeholder="Search by candidate name or job title"
-            onChange={(e) => setSearchText(e.target.value)}
+            placeholder="Search by name or skill"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
-        </Col>
-        <Col xs={24} md={6}>
-          <Select defaultValue="all" className="full-width" onChange={setStatusFilter}>
-            <Option value="all">All Status</Option>
-            <Option value="Pending">Pending</Option>
-            <Option value="Reviewed">Reviewed</Option>
-            <Option value="Shortlisted">Shortlisted</Option>
-            <Option value="Rejected">Rejected</Option>
-          </Select>
-        </Col>
-      </Row>
+        </div>
 
-      {/* Application Table */}
-      <Table
-        columns={columns}
-        dataSource={filteredData}
-        pagination={{ pageSize: 5 }}
-        className="application-table"
-      />
+        <div className="application-list">
+          {filteredData.map((app) => (
+            <div className="application-card" key={app.id}>
+              <div className="card-header">
+                <h4 className="applicant-name">{app.name}</h4>
+                <Badge
+                  status={
+                    app.status === "Accepted"
+                      ? "success"
+                      : app.status === "Rejected"
+                      ? "error"
+                      : "processing"
+                  }
+                  text={app.status}
+                />
+              </div>
 
-      {/* Application Details Modal */}
+              <p className="title">{app.title}</p>
+              <div className="meta">
+                <Tag color="cyan">{app.experience}</Tag>
+                {app.skills.map((skill) => (
+                  <Tag key={skill} color="geekblue">{skill}</Tag>
+                ))}
+              </div>
+
+              <p className="email">{app.email}</p>
+
+              <div className="profile-strength">
+                <span>Match Strength:</span>
+                <Progress
+                  percent={app.profileStrength}
+                  size="small"
+                  strokeColor={{
+                    '0%': 'red',
+                    '50%': 'yellow',
+                    '100%': 'green'
+                  }}
+                  style={{ width: '100%', marginTop: 5 }}
+                />
+              </div>
+
+              <div className="card-actions">
+                <Button
+                  type="primary"
+                  icon={<CheckOutlined />}
+                  size="small"
+                  onClick={() => handleStatusChange(app.id, "Accepted")}
+                >
+                  Accept
+                </Button>
+                <Button
+                  danger
+                  icon={<CloseOutlined />}
+                  size="small"
+                  onClick={() => handleStatusChange(app.id, "Rejected")}
+                >
+                  Reject
+                </Button>
+                <Button
+                  icon={<FileTextOutlined />}
+                  size="small"
+                  onClick={() => setSelectedResume(app.resume)}
+                >
+                  Resume
+                </Button>
+                <Button
+                  icon={<LinkedinOutlined />}
+                  size="small"
+                  onClick={() => window.open(app.linkedinUrl, "_blank")}
+                >
+                  LinkedIn
+                </Button>
+              </div>
+
+              <p className="applied-date">{app.appliedDate}</p>
+            </div>
+          ))}
+        </div>
+      </main>
+
       <Modal
-        open={!!selectedApp}
-        title="Application Details"
-        onCancel={() => setSelectedApp(null)}
+        title="Candidate Resume"
+        open={!!selectedResume}
+        onCancel={() => setSelectedResume(null)}
         footer={null}
       >
-        {selectedApp && (
-          <div className="modal-content">
-            <p><b>Name:</b> {selectedApp.name}</p>
-            <p><b>Email:</b> {selectedApp.email}</p>
-            <p><b>Phone:</b> {selectedApp.phone}</p>
-            <p><b>LinkedIn:</b> <a href={selectedApp.linkedin} target="_blank">View Profile</a></p>
-            <p><b>Skills:</b> {selectedApp.skills}</p>
-
-            <div className="modal-actions">
-              <Button type="primary">Shortlist</Button>
-              <Button danger>Reject</Button>
-              <Button>Download Resume</Button>
-            </div>
-          </div>
-        )}
+        <p>{selectedResume}</p>
+        <a href={`/${selectedResume}`} target="_blank" rel="noreferrer">
+          Download Resume
+        </a>
       </Modal>
     </div>
   );
 };
 
-export default ViewApplication;
+export default ViewAppication;
