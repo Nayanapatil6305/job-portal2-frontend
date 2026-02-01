@@ -38,48 +38,50 @@ import Homepage from "../wellcomePage/Homepage";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
+// import AppFooter from "../components/Style/AppFooter";
 import JobDetails from "../dashboards/user/JobDetails";
 // import Login from "../authentication/Login";
 // import Register from "../authentication/Register";
-import ForgetPassword from "../components/common/auth/ForgetPassword";
+// import ForgetPassword from "../components/common/auth/ForgetPassword";
 import MyApplications from "../dashboards/user/MyApplications";
 import ResumeBuilder from "../dashboards/user/ResumeBuilder";
 import JobManagement from "../dashboards/admin/JobManagement";
-import Login from "../components/common/auth/Login";
-import Register from "../components/common/auth/Register";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import ForgotPassword from "../components/common/auth/ForgetPassword";
 
-import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
-import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
+
+
 
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* <Route
+      <Route
         path="/user"
         element={
           <Protected role="USER">
             <UserDashboard />
           </Protected>
         }
-      /> */}
+      />
 
-      {/* <Route
+      <Route
         path="/recruiter"
         element={
           <Protected role="RECRUITER">
             <RecruiterDashboard />
           </Protected>
         }
-      /> */}
+      />
 
-      {/* <Route
+      <Route
         path="/admin"
         element={
           <Protected role="ADMIN">
             <AdminDashboard />
           </Protected>
         }
-      /> */}
+      />
     
      {/* </Routes>  */}
 
@@ -88,18 +90,9 @@ export default function AppRoutes() {
        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route index element={<Navigate to="/home" replace />} />
 
-
-       <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/recuiter" element={<RecruiterDashboard />} />
-       <Route path="/user" element={<UserDashboard />} />
         <Route path="/home" element={<Homepage/>} />
         <Route path="/browsejobs" element={<Browsejob/>} />
         
-
-      {/* USER ROUTES */}
-      <Route path="/user" element={<UserDashboard />} />
-      <Route path="/user/job/:id" element={<JobDetails />} />
-      <Route path="/user/apply" element={<ApplyJobscreen1 />} />
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/home" replace />} />
@@ -109,17 +102,26 @@ export default function AppRoutes() {
             <Route path="/user" element={<UserDashboard />} />
             <Route path="/recruiter" element={<RecruiterDashboard />} />
             <Route path="/layout" element={<AppLayout />} />
-           {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
+            {/* <Route path="/footer" element={<AppFooter/>} /> */}
+           <Route path="/user/job/:id" element={<JobDetails/>} />
 
 
-           <Route path="/login" element={<Login />}  />
+           {/* <Route path="/login" element={<Login />}  />
            <Route path="/register" element={<Register />} />
-           <Route path="/forgetpassword" element={<ForgetPassword />} />
+           <Route path="/forgetpassword" element={<ForgetPassword />} /> */}
+           <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
            <Route path="/myapplication" element={<MyApplications />} />
            <Route path="/resumbuilder" element={<ResumeBuilder />} />
            <Route path="/jobmanagement" element={<JobManagement />} />
+
 
 </Routes>
 
   );
 }
+
+
+// import { Routes, Route } from "react-router-dom";
+
