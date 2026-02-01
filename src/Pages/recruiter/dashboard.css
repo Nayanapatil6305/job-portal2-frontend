@@ -1,0 +1,54 @@
+.dashboard-container {
+  padding: 24px;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.stat-card {
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card h3 {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.stat-card p {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+/* CARD COLORS */
+.blue {
+  background: linear-gradient(135deg, #1890ff, #40a9ff);
+  color: white;
+}
+
+.green {
+  background: linear-gradient(135deg, #52c41a, #73d13d);
+  color: white;
+}
+
+.orange {
+  background: linear-gradient(135deg, #fa8c16, #ffc069);
+  color: white;
+}
+
+.purple {
+  background: linear-gradient(135deg, #722ed1, #b37feb);
+  color: white;
+}

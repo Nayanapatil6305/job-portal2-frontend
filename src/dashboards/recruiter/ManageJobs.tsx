@@ -1,40 +1,18 @@
-// // import { Table } from "antd";
 
 
-
-
-// import { Table, Card } from "antd";
-// import { jobs } from "../../services/Api";
-
-// const ManageJobs = () => {
-//   return (
-//     <Card title="Manage Jobs">
-//       <Table
-//         dataSource={jobs}
-//         rowKey="id"
-//         columns={[
-//           { title: "Title", dataIndex: "title" },
-//           { title: "Company", dataIndex: "company" },
-//           { title: "Location", dataIndex: "location" },
-//           { title: "Manage", dataIndex: "manage" },
-
-
-//         ]}
-//       />
-//     </Card>
-//   );
-// };
-
-// export default ManageJobs;
 
 
 
 import React, { useState } from "react";
-import { Table, Button, Space, Tag, message } from "antd";
+import { Table, Tag, Tooltip, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import {
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 
 interface Job {
-  id: number;
+  key: string;
   title: string;
   company: string;
   location: string;
@@ -43,58 +21,106 @@ interface Job {
 
 const ManageJobs: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([
-    { id: 1, title: "Frontend Developer", company: "TCS", location: "Pune", status: "Pending" },
-    { id: 2, title: "React Developer", company: "Infosys", location: "Bangalore", status: "Pending" },
-    { id: 3, title: "Software Engineer", company: "Wipro", location: "Hyderabad", status: "Pending" },
+    {
+      key: "1",
+      title: "Software Engineer",
+      company: "TCS",
+      location: "Pune",
+      status: "Pending",
+    },
+    {
+      key: "2",
+      title: "Frontend Developer",
+      company: "Infosys",
+      location: "Bangalore",
+      status: "Approved",
+    },
+    {
+      key: "3",
+      title: "React Developer",
+      company: "Wipro",
+      location: "Hyderabad",
+      status: "Rejected",
+    },
   ]);
 
-  const updateStatus = (id: number, status: "Approved" | "Rejected") => {
+  const updateStatus = (key: string, status: Job["status"]) => {
     setJobs((prev) =>
-      prev.map((job) => (job.id === id ? { ...job, status } : job))
+      prev.map((job) =>
+        job.key === key ? { ...job, status } : job
+      )
     );
     message.success(`Job ${status}`);
   };
 
   const columns: ColumnsType<Job> = [
-    { title: "Title", dataIndex: "title" },
-    { title: "Company", dataIndex: "company" },
-    { title: "Location", dataIndex: "location" },
+    {
+      title: "Title",
+      dataIndex: "title",
+    },
+    {
+      title: "Company",
+      dataIndex: "company",
+    },
+    {
+      title: "Location",
+      dataIndex: "location",
+    },
     {
       title: "Status",
       dataIndex: "status",
       render: (status) => (
-        <Tag color={status === "Approved" ? "green" : status === "Rejected" ? "red" : "orange"}>
+        <Tag
+          color={
+            status === "Approved"
+              ? "green"
+              : status === "Rejected"
+              ? "red"
+              : "orange"
+          }
+        >
           {status}
         </Tag>
       ),
     },
-    {
-      title: "Manage",
-      render: (_, record) => (
-        <Space>
-          <Button
-            type="primary"
-            disabled={record.status !== "Pending"}
-            onClick={() => updateStatus(record.id, "Approved")}
-          >
-            Approve
-          </Button>
-          <Button
-            danger
-            disabled={record.status !== "Pending"}
-            onClick={() => updateStatus(record.id, "Rejected")}
-          >
-            Reject
-          </Button>
-        </Space>
-      ),
-    },
-  ];
+{
+  title: "Actions",
+  render: (_, record) => (
+    <div style={{ display: "flex", gap: "16px" }}>
+      <Tooltip title="Approve">
+        <CheckCircleOutlined
+          style={{
+            fontSize: "20px",
+            color: "green",
+            cursor: "pointer",
+          }}
+          onClick={() => updateStatus(record.key, "Approved")}
+        />
+      </Tooltip>
+
+      <Tooltip title="Reject">
+        <CloseCircleOutlined
+          style={{
+            fontSize: "20px",
+            color: "red",
+            cursor: "pointer",
+          }}
+          onClick={() => updateStatus(record.key, "Rejected")}
+        />
+      </Tooltip>
+    </div>
+  ),
+}  
+];
 
   return (
-    <div style={{ padding: 24 }}>
+    <div style={{ padding: "24px" }}>
       <h2>Manage Jobs</h2>
-      <Table columns={columns} dataSource={jobs} rowKey="id" />
+      <Table
+        columns={columns}
+        dataSource={jobs}
+        pagination={false}
+      />
     </div>
   );
 };

@@ -36,3 +36,26 @@
       skills: "Node.js, MongoDB",
     },
   ];
+
+
+
+  const jobData = [
+  {
+    key: "1",
+    title: "Frontend Developer",
+    company: "ABC Tech",
+    status: "Open",
+  },
+  {
+    key: "2",
+    title: "Backend Developer",
+    company: "XYZ Solutions",
+    status: "Closed",
+  },
+  {
+    key: "3",
+    title: "Full Stack Developer",
+    company: "PQR Systems",
+    status: "Open",
+  },
+];
