@@ -47,6 +47,7 @@ import Navbar from "../navbar/Navbar";
 import Home from "../Pages/Home";
 import About from "../Pages/About";
 import HowItsWorkpage from "../Pages/HowItsWorkpage";
+import BrowseJobs from "../Pages/BrouseJobs";
 // import Footer from "../footer/Footer";
 
 
@@ -84,8 +85,8 @@ export default function AppRoutes() {
 
 
        {/* <Route path="/" element={<Homepage />}/> */}
-       <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route index element={<Navigate to="/home" replace />} />
+       <Route path="/" element={<Navigate to="/homenew" replace />} />
+        <Route index element={<Navigate to="/homenew" replace />} />
 
 
        <Route path="/admin" element={<AdminDashboard />} />
@@ -104,12 +105,14 @@ export default function AppRoutes() {
  <Route path="/"element={<><Navbar /><Home /></>}/>
  <Route path="/about"element={<><About /></>}/>
  <Route path="/working"element={<><HowItsWorkpage /></>}/>
+ <Route path="/brousejobs"element={<><BrowseJobs /></>}/>
+
 
 
         
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
-       <Route path="*" element={<Navigate to="/home" replace />} />
+       <Route path="*" element={<Navigate to="/homenew" replace />} />
 
   
             <Route path="/admin" element={<AdminDashboard />} />
