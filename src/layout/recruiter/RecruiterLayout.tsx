@@ -1,27 +1,4 @@
-// import { Layout } from "antd";
-// import { Outlet } from "react-router-dom";
-// import RecruiterNavbar from "./RecruiterNavbar";
-// import RecruiterSidebar from "./RecruiterSidebar";
-
-// const { Content } = Layout;
-
-// const RecruiterLayout = () => (
-//   <Layout style={{ minHeight: "100vh" }}>
-//     <RecruiterSidebar />
-//     <Layout>
-//       <RecruiterNavbar />
-//       <Content style={{ margin: 16, background: "#fff", padding: 20 }}>
-//         <Outlet />
-//       </Content>
-//     </Layout>
-//   </Layout>
-// );
-
-// export default RecruiterLayout;
-
-
-
-
+import React, { useState } from "react";
 import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import RecruiterSidebar from "./RecruiterSidebar";
@@ -29,14 +6,28 @@ import RecruiterNavbar from "./RecruiterNavbar";
 
 const { Content } = Layout;
 
-const RecruiterLayout = () => {
-  return (
-    <Layout>
-      <RecruiterSidebar />
+const RecruiterLayout: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
 
-      <Layout style={{ marginLeft: 240 }}>
-        <RecruiterNavbar />
-        <Content style={{ padding: 24, background: "#f5f7fa" }}>
+  return (
+    <Layout style={{ minHeight: "100vh" }}>
+      <RecruiterSidebar collapsed={collapsed} />
+
+      <Layout>
+        <RecruiterNavbar
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
+
+        <Content
+          style={{
+            marginLeft: collapsed ? 80 : 240,
+            marginTop: 64,
+            padding: 24,
+            background: "#f3f2ef", // LinkedIn style bg
+            transition: "all 0.2s",
+          }}
+        >
           <Outlet />
         </Content>
       </Layout>

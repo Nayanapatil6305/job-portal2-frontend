@@ -38,6 +38,21 @@ import UserJobs from "../Pages/user/Jobs";
 import Applications from "../Pages/user/Applications";
 
 
+
+import PostedJobs from "../Pages/recruiter/Posted-Jobs";
+import Interviews from "../Pages/recruiter/Interviews";
+import Reports from "../Pages/recruiter/Reports";
+import Settings from "../Pages/recruiter/Settings";
+import Logout from "../Pages/recruiter/Logout";
+
+
+
+
+
+
+
+
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -101,6 +116,16 @@ export default function AppRoutes() {
       </Route>
 
 
+
+    
+      <Route path="/recruiter" element={<RecruiterLayout />}>
+        <Route path="jobs" element={<PostedJobs />} />
+        <Route path="interviews" element={<Interviews />} />
+        <Route path="reports" element={<Reports />} />
+        <Route path="settings" element={<Settings />} />
+        <Route path="logout" element={<Logout />} />
+      </Route>
+    
 
 
 

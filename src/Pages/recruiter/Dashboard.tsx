@@ -124,13 +124,13 @@ const Dashboard: React.FC = () => {
             <Progress percent={45} status="exception" />
           </Card>
 
-          <Card title="📅 Upcoming Interviews" style={{ marginTop: 16 }}>
+          {/* <Card title="📅 Upcoming Interviews" style={{ marginTop: 16 }}>
             <ul style={{ paddingLeft: 16 }}>
               <li>Frontend Developer – 10:00 AM</li>
               <li>Backend Developer – 12:30 PM</li>
               <li>UI/UX Designer – 3:00 PM</li>
             </ul>
-          </Card>
+          </Card> */}
         </Col>
       </Row>
     </>

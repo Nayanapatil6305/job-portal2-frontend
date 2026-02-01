@@ -2,8 +2,6 @@ import React from "react";
 import { Layout, Menu } from "antd";
 import {
   DashboardOutlined,
-  PlusCircleOutlined,
-  TeamOutlined,
   FileTextOutlined,
   CalendarOutlined,
   BarChartOutlined,
@@ -14,96 +12,58 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const { Sider } = Layout;
 
-const RecruiterSidebar: React.FC = () => {
+interface Props {
+  collapsed: boolean;
+}
+
+const RecruiterSidebar: React.FC<Props> = ({ collapsed }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
     <Sider
+      collapsed={collapsed}
       width={240}
+      collapsedWidth={80}
       style={{
-        background: "#0f172a",
-        height: "100vh",
+        background: "#ffffff",
+        borderRight: "1px solid #e5e7eb",
         position: "fixed",
+        height: "100vh",
         left: 0,
         top: 0,
       }}
     >
-      {/* LOGO / BRAND */}
       <div
         style={{
           height: 64,
+          fontSize: 18,
+          fontWeight: 700,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#fff",
-          fontSize: 20,
-          fontWeight: 600,
-          letterSpacing: 1,
-          borderBottom: "1px solid #1e293b",
+          borderBottom: "1px solid #e5e7eb",
         }}
       >
-        Recruiter Panel
+        Recruiter
       </div>
 
-      {/* MENU */}
       <Menu
-        theme="dark"
         mode="inline"
         selectedKeys={[location.pathname]}
         onClick={({ key }) => navigate(key)}
-        style={{
-          background: "#0f172a",
-          borderRight: 0,
-          marginTop: 12,
-        }}
+        style={{ borderRight: 0 }}
         items={[
+          { key: "/recruiter/dashboard", icon: <DashboardOutlined />, label: "Dashboard" },
+          { key: "/recruiter/jobs", icon: <FileTextOutlined />, label: "Posted Jobs" },
+          { key: "/recruiter/interviews", icon: <CalendarOutlined />, label: "Interviews" },
+          { key: "/recruiter/reports", icon: <BarChartOutlined />, label: "Reports" },
+          { key: "/recruiter/settings", icon: <SettingOutlined />, label: "Settings" },
+          { type: "divider" },
           {
-            key: "/recruiter/dashboard",
-            icon: <DashboardOutlined />,
-            label: "Dashboard",
-          },
-          {
-            key: "/recruiter/post-job",
-            icon: <PlusCircleOutlined />,
-            label: "Post Job",
-          },
-          {
-            key: "/recruiter/candidates",
-            icon: <TeamOutlined />,
-            label: "Candidates",
-          },
-          {
-            key: "/recruiter/jobs",
-            icon: <FileTextOutlined />,
-            label: "Posted Jobs",
-          },
-          {
-            key: "/recruiter/interviews",
-            icon: <CalendarOutlined />,
-            label: "Interviews",
-          },
-          {
-            key: "/recruiter/reports",
-            icon: <BarChartOutlined />,
-            label: "Reports",
-          },
-          {
-            key: "/recruiter/settings",
-            icon: <SettingOutlined />,
-            label: "Settings",
-          },
-          {
-            type: "divider",
-          },
-          {
-            key: "/logout",
-            icon: <LogoutOutlined style={{ color: "#ff4d4f" }} />,
-            label: (
-              <span style={{ color: "#ff4d4f", fontWeight: 500 }}>
-                Logout
-              </span>
-            ),
+            key: "/recruiter/logout",
+            icon: <LogoutOutlined style={{ color: "#dc2626" }} />,
+            label: <span style={{ color: "#dc2626" }}>Logout</span>,
           },
         ]}
       />
