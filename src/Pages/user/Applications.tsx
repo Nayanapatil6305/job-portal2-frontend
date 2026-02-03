@@ -1,46 +1,36 @@
-import { Card, Table, Tag } from "antd";
+import { Table, Tag } from "antd";
 
 const Applications = () => {
-  const dataSource = [
-    {
-      key: "1",
-      job: "Frontend Developer",
-      company: "TCS",
-      status: "Applied",
-    },
-    {
-      key: "2",
-      job: "React Developer",
-      company: "Infosys",
-      status: "Shortlisted",
-    },
-  ];
-
   const columns = [
-    {
-      title: "Job Title",
-      dataIndex: "job",
-    },
-    {
-      title: "Company",
-      dataIndex: "company",
-    },
+    { title: "Job Title", dataIndex: "job" },
+    { title: "Company", dataIndex: "company" },
     {
       title: "Status",
       dataIndex: "status",
       render: (status: string) => (
-        <Tag color={status === "Shortlisted" ? "green" : "blue"}>
+        <Tag color={status === "Pending" ? "orange" : "green"}>
           {status}
         </Tag>
       ),
     },
   ];
 
-  return (
-    <Card title="My Applications">
-      <Table dataSource={dataSource} columns={columns} />
-    </Card>
-  );
+  const data = [
+    {
+      key: "1",
+      job: "Frontend Developer",
+      company: "Tech Corp",
+      status: "Pending",
+    },
+    {
+      key: "2",
+      job: "React Developer",
+      company: "Startup Inc",
+      status: "Shortlisted",
+    },
+  ];
+
+  return <Table columns={columns} dataSource={data} />;
 };
 
 export default Applications;

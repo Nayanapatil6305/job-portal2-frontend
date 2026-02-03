@@ -1,50 +1,35 @@
-import React from "react";
-import { Table, Tag } from "antd";
+import { Card, Table, Tag } from "antd";
 
 const Jobs = () => {
-  const dataSource = [
-    {
-      key: "1",
-      title: "Frontend Developer",
-      company: "TCS",
-      status: "Open",
-    },
-    {
-      key: "2",
-      title: "Backend Developer",
-      company: "Infosys",
-      status: "Closed",
-    },
-  ];
-
   const columns = [
-    {
-      title: "Job Title",
-      dataIndex: "title",
-      key: "title",
-    },
-    {
-      title: "Company",
-      dataIndex: "company",
-      key: "company",
-    },
+    { title: "Job Title", dataIndex: "title" },
+    { title: "Company", dataIndex: "company" },
     {
       title: "Status",
       dataIndex: "status",
-      key: "status",
-      render: (status: string) => (
-        <Tag color={status === "Open" ? "green" : "red"}>
-          {status}
-        </Tag>
-      ),
+      render: (status: string) =>
+        status === "Open" ? (
+          <Tag color="green">Open</Tag>
+        ) : (
+          <Tag color="orange">Closed</Tag>
+        ),
     },
   ];
 
+  const data = [
+    { key: 1, title: "Frontend Developer", company: "Google", status: "Open" },
+    { key: 2, title: "Backend Developer", company: "Amazon", status: "Closed" },
+        { key: 3, title: "Frontend Developer", company: "Google", status: "Open" },
+    { key: 4, title: "Backend Developer", company: "Amazon", status: "Closed" },
+        { key: 5, title: "Frontend Developer", company: "Google", status: "Open" },
+    { key: 6, title: "Backend Developer", company: "Amazon", status: "Closed" },
+
+  ];
+
   return (
-    <div>
-      <h2>Jobs</h2>
-      <Table dataSource={dataSource} columns={columns} />
-    </div>
+    <Card title="Jobs">
+      <Table columns={columns} dataSource={data} />
+    </Card>
   );
 };
 

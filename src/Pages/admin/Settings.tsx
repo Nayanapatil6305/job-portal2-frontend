@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Card,
   Form,
@@ -8,36 +7,36 @@ import {
   Col,
   Divider,
   Switch,
+  Avatar,
   Upload,
   message,
 } from "antd";
 import {
-  MailOutlined,
-  PhoneOutlined,
+  UserOutlined,
   UploadOutlined,
   LockOutlined,
 } from "@ant-design/icons";
 
-const Settings: React.FC = () => {
+const Settings = () => {
   const onFinish = () => {
-    message.success("Recruiter settings updated successfully");
+    message.success("Settings updated successfully");
   };
 
   return (
     <>
       {/* Page Header */}
       <div style={{ marginBottom: 24 }}>
-        <h2 style={{ marginBottom: 4 }}>Recruiter Settings</h2>
+        <h2 style={{ marginBottom: 4 }}>Admin Settings</h2>
         <span style={{ color: "#6b7280" }}>
-          Manage your company profile and recruiter preferences
+          Manage your profile, security, and preferences
         </span>
       </div>
 
       <Row gutter={[24, 24]}>
-        {/* Company Profile */}
+        {/* Profile Settings */}
         <Col xs={24} md={14}>
           <Card
-            title="Company Profile"
+            title="Profile Information"
             bordered={false}
             style={{ borderRadius: 12 }}
           >
@@ -45,58 +44,58 @@ const Settings: React.FC = () => {
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
-                    label="Company Name"
-                    name="companyName"
-                    rules={[{ required: true, message: "Company name is required" }]}
+                    label="Admin Name"
+                    name="name"
+                    rules={[{ required: true, message: "Name is required" }]}
                   >
-                    <Input placeholder="Enter company name" />
+                    <Input prefix={<UserOutlined />} placeholder="Admin Name" />
                   </Form.Item>
                 </Col>
 
                 <Col span={12}>
                   <Form.Item
-                    label="Official Email"
+                    label="Email Address"
                     name="email"
                     rules={[
                       { required: true, message: "Email is required" },
                       { type: "email", message: "Enter valid email" },
                     ]}
                   >
-                    <Input prefix={<MailOutlined />} placeholder="hr@company.com" />
+                    <Input placeholder="admin@company.com" />
                   </Form.Item>
                 </Col>
               </Row>
 
-              <Form.Item label="Company Website">
-                <Input placeholder="https://www.company.com" />
-              </Form.Item>
-
-              <Form.Item label="Company Logo">
+              <Form.Item label="Profile Photo">
                 <Upload showUploadList={false}>
-                  <Button icon={<UploadOutlined />}>Upload Logo</Button>
+                  <Button icon={<UploadOutlined />}>Upload Photo</Button>
                 </Upload>
               </Form.Item>
 
               <Button type="primary" htmlType="submit">
-                Save Company Details
+                Save Profile
               </Button>
             </Form>
           </Card>
         </Col>
 
-        {/* Recruiter Preferences */}
+        {/* Security & Preferences */}
         <Col xs={24} md={10}>
           <Card
-            title="Recruiter Preferences"
+            title="Security & Preferences"
             bordered={false}
             style={{ borderRadius: 12 }}
           >
             <Form layout="vertical">
-              <Form.Item label="Recruiter Phone">
-                <Input
-                  prefix={<PhoneOutlined />}
-                  placeholder="+91 9876543210"
+              <Form.Item label="Change Password">
+                <Input.Password
+                  prefix={<LockOutlined />}
+                  placeholder="New Password"
                 />
+              </Form.Item>
+
+              <Form.Item label="Confirm Password">
+                <Input.Password placeholder="Confirm Password" />
               </Form.Item>
 
               <Divider />
@@ -109,22 +108,13 @@ const Settings: React.FC = () => {
               </Form.Item>
 
               <Form.Item
-                label="Candidate Alerts"
+                label="Two-Factor Authentication"
                 valuePropName="checked"
               >
-                <Switch defaultChecked />
+                <Switch />
               </Form.Item>
 
-              <Divider />
-
-              <Form.Item label="Change Password">
-                <Input.Password
-                  prefix={<LockOutlined />}
-                  placeholder="New password"
-                />
-              </Form.Item>
-
-              <Button type="primary" danger>
+              <Button type="primary" danger style={{ marginTop: 16 }}>
                 Update Security
               </Button>
             </Form>

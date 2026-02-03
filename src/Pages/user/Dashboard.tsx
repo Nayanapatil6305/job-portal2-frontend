@@ -1,149 +1,117 @@
-import { Card, Col, Row, Table, Tag, Button } from "antd";
+import { Card, Col, Row, Statistic, Typography, List, Tag } from "antd";
 import {
-  // BriefcaseOutlined,
-  FileDoneOutlined,
-  CalendarOutlined,
-  TrophyOutlined,
-  TaobaoOutlined,
+  UserOutlined,
+  FileTextOutlined,
+  StarOutlined,
+  BellOutlined,
 } from "@ant-design/icons";
 
-const stats = [
-  {
-    title: "Total Jobs Available",
-    value: 120,
-    icon: <TaobaoOutlined/>,
-    color: "#1890ff",
-  },
-  {
-    title: "Jobs Applied",
-    value: 6,
-    icon: <FileDoneOutlined />,
-    color: "#52c41a",
-  },
-  {
-    title: "Interviews Scheduled",
-    value: 2,
-    icon: <CalendarOutlined />,
-    color: "#faad14",
-  },
-  {
-    title: "Offers Received",
-    value: 1,
-    icon: <TrophyOutlined />,
-    color: "#eb2f96",
-  },
-];
+const { Title, Text } = Typography;
 
-const applications = [
-  {
-    key: 1,
-    job: "Frontend Developer",
-    company: "Tech Corp",
-    status: "Pending",
-  },
-  {
-    key: 2,
-    job: "Backend Developer",
-    company: "CloudSoft",
-    status: "Approved",
-  },
-  {
-    key: 3,
-    job: "UI/UX Designer",
-    company: "Design Hub",
-    status: "Rejected",
-  },
-];
-
-const columns = [
-  {
-    title: "Job Title",
-    dataIndex: "job",
-  },
-  {
-    title: "Company",
-    dataIndex: "company",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    render: (status: string) => {
-      const color =
-        status === "Approved"
-          ? "green"
-          : status === "Rejected"
-          ? "red"
-          : "orange";
-      return <Tag color={color}>{status}</Tag>;
-    },
-  },
-];
-
-const UserDashboard = () => {
+const Dashboard = () => {
   return (
-    <div style={{ padding: 24 }}>
-      <h3>User Dashboard</h3>
+    <>
+      {/* Page Header */}
+      <Title level={3}>Dashboard</Title>
+      <Text type="secondary">
+        Overview of your job search activity
+      </Text>
 
-      {/* STATS CARDS */}
-      <Row gutter={16} style={{ marginBottom: 24 }}>
-        {stats.map((item, index) => (
-          <Col span={6} key={index}>
-            <Card
-              hoverable
-              style={{
-                borderLeft: `5px solid ${item.color}`,
-              }}
-            >
-              <Row justify="space-between" align="middle">
-                <div>
-                  <h3>{item.value}</h3>
-                  <p>{item.title}</p>
-                </div>
-                <div style={{ fontSize: 28, color: item.color }}>
-                  {item.icon}
-                </div>
-              </Row>
-            </Card>
-          </Col>
-        ))}
+      {/* KPI Cards */}
+      <Row gutter={[16, 16]} style={{ marginTop: 20 }}>
+        <Col xs={24} sm={12} md={6}>
+          <Card hoverable>
+            <Statistic
+              title="Applied Jobs"
+              value={12}
+              prefix={<FileTextOutlined />}
+            />
+          </Card>
+        </Col>
+
+        <Col xs={24} sm={12} md={6}>
+          <Card hoverable>
+            <Statistic
+              title="Saved Jobs"
+              value={5}
+              prefix={<StarOutlined />}
+            />
+          </Card>
+        </Col>
+
+        <Col xs={24} sm={12} md={6}>
+          <Card hoverable>
+            <Statistic
+              title="Profile Views"
+              value={28}
+              prefix={<UserOutlined />}
+            />
+          </Card>
+        </Col>
+
+        <Col xs={24} sm={12} md={6}>
+          <Card hoverable>
+            <Statistic
+              title="New Notifications"
+              value={3}
+              prefix={<BellOutlined />}
+            />
+          </Card>
+        </Col>
       </Row>
 
-      {/* APPLICATIONS TABLE */}
-      <Card title="My Job Applications" hoverable>
-        <Table
-          columns={columns}
-          dataSource={applications}
-          pagination={false}
-        />
-      </Card>
+      {/* Recent Activity */}
+      <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
+        <Col xs={24} md={14}>
+          <Card title="Recent Applications">
+            <List
+              itemLayout="horizontal"
+              dataSource={[
+                {
+                  job: "Frontend Developer",
+                  company: "Tech Corp",
+                  status: "Pending",
+                },
+                {
+                  job: "React Developer",
+                  company: "Startup Inc",
+                  status: "Shortlisted",
+                },
+              ]}
+              renderItem={(item) => (
+                <List.Item>
+                  <List.Item.Meta
+                    title={item.job}
+                    description={item.company}
+                  />
+                  <Tag
+                    color={
+                      item.status === "Pending" ? "orange" : "green"
+                    }
+                  >
+                    {item.status}
+                  </Tag>
+                </List.Item>
+              )}
+            />
+          </Card>
+        </Col>
 
-      {/* RECOMMENDED JOBS */}
-      {/* <h3 style={{ marginTop: 30 }}>Recommended Jobs</h3>
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card hoverable>
-            <h4>React Developer</h4>
-            <p>ABC Solutions</p>
-            <Button type="primary">Apply</Button>
+        <Col xs={24} md={10}>
+          <Card title="Profile Completion">
+            <Statistic
+              value={85}
+              suffix="%"
+              title="Completed"
+            />
+            <Text type="secondary">
+              Complete your profile to get better job matches.
+            </Text>
           </Card>
         </Col>
-        <Col span={8}>
-          <Card hoverable>
-            <h4>Node.js Developer</h4>
-            <p>Cloud Systems</p>
-            <Button type="primary">Apply</Button>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card hoverable>
-            <h4>UI Designer</h4>
-            <p>Creative Studio</p>
-            <Button type="primary">Apply</Button>
-          </Card>
-        </Col>
-      </Row> */}
-    </div>
+      </Row>
+    </>
   );
 };
 
-export default UserDashboard;
+export default Dashboard;

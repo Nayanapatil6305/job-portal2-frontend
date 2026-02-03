@@ -57,7 +57,7 @@ const Dashboard: React.FC = () => {
       {/* ================= TOP KPI CARDS ================= */}
       <Row gutter={16}>
         <Col span={6}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Posted Jobs"
               value={12}
@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
         </Col>
 
         <Col span={6}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Candidates"
               value={245}
@@ -77,7 +77,7 @@ const Dashboard: React.FC = () => {
         </Col>
 
         <Col span={6}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Interviews"
               value={18}
@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
         </Col>
 
         <Col span={6}>
-          <Card>
+          <Card hoverable>
             <Statistic
               title="Hiring Rate"
               value={68}

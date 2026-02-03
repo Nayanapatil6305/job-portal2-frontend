@@ -15,6 +15,31 @@ const Interviews: React.FC = () => {
       date: "12 Feb 2026",
       status: "Completed",
     },
+
+        {
+      candidate: " Naina Patil",
+      date: "14 march 2026",
+      status: "Pending",
+    },
+
+        {
+      candidate: "Sneha Patil",
+      date: "15 Feb 2026",
+      status: "Completed",
+    },
+        {
+      candidate: "Rahul Sharma",
+      date: "10 Feb 2026",
+      status: "Scheduled",
+    },
+
+        {
+      candidate: "Rahul Sharma",
+      date: "10 Feb 2026",
+      status: "Scheduled",
+    },
+
+
   ];
 
   return (
@@ -26,12 +51,16 @@ const Interviews: React.FC = () => {
         dataSource={interviews}
         renderItem={(item) => (
           <List.Item>
-            <Card>
+            <Card hoverable>
               <p><b>Candidate:</b> {item.candidate}</p>
               <p><b>Date:</b> {item.date}</p>
-              <Tag color={item.status === "Scheduled" ? "blue" : "green"}>
+              {/* <Tag color={item.status === "Scheduled" ? "blue" : "green" }>
+                {item.status}
+              </Tag> */}
+                <Tag color={item.status === "Pending" ? "red" : "purple" }>
                 {item.status}
               </Tag>
+
             </Card>
           </List.Item>
         )}

@@ -1,129 +1,88 @@
-// import { Layout, Menu } from "antd";
-// import {
-//   DashboardOutlined,
-//   FileSearchOutlined,
-//   ProfileOutlined,
-//   LogoutOutlined,
-//   ProfileFilled,
-// } from "@ant-design/icons";
-// import { useNavigate } from "react-router-dom";
-
-// const { Sider } = Layout;
-
-// const UserSidebar = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <Sider width={220} style={{ background: "#001529" }}>
-//       <div
-//         style={{
-//           color: "#fff",
-//           padding: "16px",
-//           fontSize: "18px",
-//           textAlign: "center",
-//           fontWeight: "bold",
-//         }}
-//       >
-//         Job Portal
-//       </div>
-
-//       <Menu
-//         theme="dark"
-//         mode="inline"
-//         defaultSelectedKeys={["dashboard"]}
-//         onClick={(e) => navigate(`/user/${e.key}`)}
-//         items={[
-//           {
-//             key: "dashboard",
-//             icon: <DashboardOutlined />,
-//             label: "Dashboard",
-//           },
-//             {
-//             key: "profile",
-//             icon: <ProfileFilled/>,
-//             label: "Profile",
-//           },
-
-//           {
-//             key: "jobs",
-//             icon: <FileSearchOutlined />,
-//             label: "Jobs",
-//           },
-//           {
-//             key: "applications",
-//             icon: <ProfileOutlined />,
-//             label: "My Applications",
-//           },
-//           {
-//             key: "logout",
-//             icon: <LogoutOutlined />,
-//             label: "Logout",
-//           },
-//         ]}
-//       />
-//     </Sider>
-//   );
-// };
-
-// export default UserSidebar;
-
-
-
-import { Menu } from "antd";
+import React from "react";
+import { Layout, Menu } from "antd";
 import {
-  BehanceCircleFilled,
   DashboardOutlined,
-  // BriefcaseOutlined,
+  UserOutlined,
   FileTextOutlined,
+  StarOutlined,
+  BellOutlined,
+  SettingOutlined,
   LogoutOutlined,
+  FolderAddFilled,
 } from "@ant-design/icons";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const UserSidebar = () => {
+const { Sider } = Layout;
+
+interface UserSidebarProps {
+  collapsed: boolean;
+}
+
+const UserSidebar: React.FC<UserSidebarProps> = ({ collapsed }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
-    <div style={sidebarStyle}>
-      <div style={logoStyle}>User Panel</div>
-
+    <Sider
+      collapsible
+      collapsed={collapsed}
+      trigger={null}
+      width={240}
+      style={{
+        background: "#001529",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        height: "100vh",
+        overflow: "auto",
+      }}
+    >
+      {/* LOGO */}
+      <div
+        style={{
+          height: 64,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: collapsed ? "center" : "flex-start",
+          paddingLeft: collapsed ? 0 : 20,
+          color: "#fff",
+          fontSize: 18,
+          fontWeight: 600,
+        }}
+      >
+        {collapsed ? "JP" : "Job Portal"}
+      </div>
 
       <Menu
         theme="dark"
         mode="inline"
         selectedKeys={[location.pathname]}
-      >
-        <Menu.Item key="/user/dashboard" icon={<DashboardOutlined />}>
-          <Link to="/user/dashboard">Dashboard</Link>
-        </Menu.Item>
-
-        <Menu.Item key="/user/jobs" icon={<BehanceCircleFilled />}>
-          <Link to="/user/jobs">Jobs</Link>
-        </Menu.Item>
-
-        <Menu.Item key="/user/applications" icon={<FileTextOutlined />}>
-          <Link to="/user/applications">Applications</Link>
-        </Menu.Item>
-
-        <Menu.Item key="/logout" icon={<LogoutOutlined />}>
-          Logout
-        </Menu.Item>
-      </Menu>
-    </div>
+        onClick={({ key }) => {
+          if (key === "/logout") {
+            navigate("/login");
+          } else {
+            navigate(key);
+          }
+        }}
+        items={[
+          { key: "/user/dashboard", icon: <DashboardOutlined />, label: "Dashboard" },
+          { key: "/user/profile", icon: <UserOutlined />, label: "My Profile" },
+          { key: "/user/jobs", icon: <FolderAddFilled />, label: "Jobs" },
+          { key: "/user/applications", icon: <FileTextOutlined />, label: "Applications" },
+          { key: "/user/saved", icon: <StarOutlined />, label: "Saved Jobs" },
+          { key: "/user/notifications", icon: <BellOutlined />, label: "Notifications" },
+          { key: "/user/settings", icon: <SettingOutlined />, label: "Settings" },
+          { type: "divider" },
+          {
+            key: "/logout",
+            icon: <LogoutOutlined />,
+            label: "Logout",
+            danger: true,
+          },
+        ]}
+      />
+    </Sider>
   );
-};
-
-const sidebarStyle = {
-  width: 220,
-  height: "100vh",
-  background: "#001529",
-};
-
-const logoStyle = {
-  color: "#fff",
-  fontSize: 18,
-  fontWeight: "bold",
-  padding: 16,
-  textAlign: "center" as const,
 };
 
 export default UserSidebar;

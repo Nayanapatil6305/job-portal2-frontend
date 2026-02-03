@@ -2,9 +2,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Protected from "./Protected";
 
-// import UserDashboard from "../dashboards/user/UserDashboard";
-// import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
-// import AdminDashboard from "../dashboards/admin/AdminDashboard";
 import Homepage from "../wellcomePage/Homepage";
 import Brousejob from "../wellcomePage/Browsejob";
 // import About from "../wellcomePage/About";
@@ -18,39 +15,44 @@ import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
 import ViewCandidates from "../dashboards/recruiter/ViewCandidates";
 
 
-// ADMIN
+
+
+/* ========== ADMIN ========== */
 import AdminLayout from "../layout/admin/AdminLayout";
 import AdminDashboard from "../Pages/admin/Dashboard";
 import Recruiters from "../Pages/admin/Recruiters";
 import JobSeekers from "../Pages/admin/JobSeekers";
-import Jobs from "../Pages/admin/Jobs";
+import AdminJobs from "../Pages/admin/Jobs";
+import AdminReports from "../Pages/admin/Reports";
+import AdminSettings from "../Pages/admin/Settings";
 
-/* Recruiter */
-import RecruiterLayout from "../layout/recruiter/RecruiterLayout";
-import RecruiterDashboard from "../Pages/recruiter/Dashboard";
-import PostJob from "../Pages/recruiter/PostJob";
-import Candidates from "../Pages/recruiter/Candidates";
-
-/* User */
+/* ========== USER ========== */
 import UserLayout from "../layout/user/UserLayout";
 import UserDashboard from "../Pages/user/Dashboard";
 import UserJobs from "../Pages/user/Jobs";
 import Applications from "../Pages/user/Applications";
+import Profile from "../Pages/user/Profile";
+import UserSettings from "../Pages/user/Settings";
 
-
-
+/* ========== RECRUITER ========== */
+import RecruiterLayout from "../layout/recruiter/RecruiterLayout";
+import RecruiterDashboard from "../Pages/recruiter/Dashboard";
+import Candidates from "../Pages/recruiter/Candidates";
 import PostedJobs from "../Pages/recruiter/Posted-Jobs";
 import Interviews from "../Pages/recruiter/Interviews";
-import Reports from "../Pages/recruiter/Reports";
-import Settings from "../Pages/recruiter/Settings";
+import RecruiterReports from "../Pages/recruiter/Reports";
+import RecruiterSettings from "../Pages/recruiter/Settings";
+import BrowseJobs from "../wellcomePage/Browsejob";
+import Dashboard from "../Pages/admin/Dashboard";
+import Jobs from "../Pages/admin/Jobs";
+import Reports from "../Pages/admin/Reports";
+// import Settings from "../Pages/admin/Settings";
 import Logout from "../Pages/recruiter/Logout";
-
-
-
-
-
-
-
+import PostJob from "../Pages/recruiter/PostJob";
+import Login from "../Pages/auth/Login";
+import SavedJobs from "../Pages/user/SavedJobs";
+import Notifications from "../Pages/user/Notifications";
+import Settings from "../Pages/admin/Settings";
 
 
 export default function AppRoutes() {
@@ -91,44 +93,77 @@ export default function AppRoutes() {
         <Route index element={<Navigate to="/home" replace />} />
 
 
-      {/* ADMIN */}
-      <Route path="/admin" element={<AdminLayout />}/>
-        <Route index element={<Navigate to="dashboard" />} />
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="recruiter" element={<Recruiters/>} />
-        <Route path="jobseeker" element={<JobSeekers />} />
-        <Route path="jobs" element={<Jobs />} />
 
-      {/* RECRUITER */}
-      <Route path="/recruiter" element={<RecruiterLayout />}>
-        <Route index element={<Navigate to="dashboard" />} />
-        <Route path="dashboard" element={<RecruiterDashboard />} />
-        <Route path="post-job" element={<PostJob />} />
-        <Route path="candidates" element={<Candidates />} />
-      </Route>
 
-      {/* USER */}
+      {/* User Layout */}
       <Route path="/user" element={<UserLayout />}>
-        <Route index element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<UserDashboard />} />
-        <Route path="jobs" element={<UserJobs />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="jobs" element={<Jobs />} />
         <Route path="applications" element={<Applications />} />
+        <Route path="saved" element={<SavedJobs/>} /> 
+         <Route path="notifications" element={<Notifications />} />
+        <Route path="settings" element={<UserSettings />} /> 
       </Route>
+            {/* Auth / Login */}
+      {/* <Route path="/login" element={<Login/>} /> */}
 
 
 
-    
+ {/* RECRUITER SIDEBAR ROUTES */}
       <Route path="/recruiter" element={<RecruiterLayout />}>
         <Route path="jobs" element={<PostedJobs />} />
         <Route path="interviews" element={<Interviews />} />
         <Route path="reports" element={<Reports />} />
-        <Route path="settings" element={<Settings />} />
+        <Route path="settings" element={<RecruiterSettings/>} />
         <Route path="logout" element={<Logout />} />
+        <Route path="postjob" element={<PostJob />} />
+
       </Route>
     
+ {/* ADMIN SIDEBAR ROUTES */}
+      <Route path="/admin" element={<AdminLayout />}>
+  <Route path="dashboard" element={<AdminDashboard/>} />
+  <Route path="recruiters" element={<Recruiters />} />
+  <Route path="jobseekers" element={<JobSeekers />} />
+  <Route path="jobs" element={<Jobs/>} />
+  <Route path="reports" element={<Reports />} />
+  <Route path="settings" element={<Settings/>} />
+</Route>
 
 
+      {/* ADMIN ROUTES */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="recruiters" element={<Recruiters />} />
+        <Route path="jobseekers" element={<JobSeekers />} />
+        <Route path="jobs" element={<AdminJobs />} />
+        <Route path="reports" element={<AdminReports />} />
+        <Route path="settings" element={<AdminSettings />} />
+      </Route>
 
+
+      {/* RECRUITER ROUTES */}
+      <Route path="/recruiter" element={<RecruiterLayout />}>
+        <Route path="dashboard" element={<RecruiterDashboard />} />
+        <Route path="candidates" element={<Candidates />} />
+        <Route path="jobs" element={<PostedJobs />} />
+        <Route path="interviews" element={<Interviews />} />
+        <Route path="reports" element={<RecruiterReports />} />
+        <Route path="postjob" element={<PostJob/>} />
+        <Route path="settings" element={<RecruiterSettings />} />
+      </Route>
+
+
+      {/* USER ROUTES */}
+      <Route path="/user" element={<UserLayout />}>
+        <Route path="dashboard" element={<UserDashboard />} />
+        <Route path="jobs" element={<UserJobs />} />
+        <Route path="applications" element={<Applications />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="settings" element={<UserSettings />} />
+      </Route>
+    
 
 
 
@@ -143,15 +178,11 @@ export default function AppRoutes() {
 
         <Route path="/" element={<Navigate to="/admin/dashboard" />} />
  */}
-       <Route path="/user" element={<UserDashboard />} />
+       {/* <Route path="/user" element={<UserDashboard />} /> */}
         <Route path="/home" element={<Homepage/>} />
-        <Route path="/browsejobs" element={<Browsejob/>} />
+        <Route path="/browsejobs" element={<BrowseJobs/>} />
         
 
-      {/* USER ROUTES */}
-      <Route path="/user" element={<UserDashboard />} />
-      <Route path="/user/job/:id" element={<JobDetails />} />
-      <Route path="/user/apply" element={<ApplyJobscreen1 />} />
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/home" replace />} />

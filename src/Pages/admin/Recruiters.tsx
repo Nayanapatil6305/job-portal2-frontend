@@ -1,22 +1,10 @@
-import React from "react";
-import { Table, Tag } from "antd";
+import { Card, Table, Tag, Tooltip, Space } from "antd";
+import {
+  CheckCircleOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 
 const Recruiters = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "TCS HR",
-      email: "hr@tcs.com",
-      status: "Active",
-    },
-    {
-      key: "2",
-      name: "Infosys HR",
-      email: "hr@infosys.com",
-      status: "Inactive",
-    },
-  ];
-
   const columns = [
     {
       title: "Recruiter Name",
@@ -24,27 +12,69 @@ const Recruiters = () => {
       key: "name",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "Position",
+      dataIndex: "position",
+      key: "position",
+      render: (position: string) => (
+        <Tag color="blue">{position}</Tag>
+      ),
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status: string) => (
-        <Tag color={status === "Active" ? "green" : "red"}>
-          {status}
-        </Tag>
+      title: "Manage",
+      key: "action",
+      align: "center" as const,
+      render: () => (
+        <Space size="middle">
+          <Tooltip title="Approve Recruiter">
+            <CheckCircleOutlined
+              style={{ color: "#16a34a", fontSize: 18, cursor: "pointer" }}
+            />
+          </Tooltip>
+
+          <Tooltip title="Reject Recruiter">
+            <CloseCircleOutlined
+              style={{ color: "#dc2626", fontSize: 18, cursor: "pointer" }}
+            />
+          </Tooltip>
+        </Space>
       ),
     },
   ];
 
+  const data = [
+    {
+      key: 1,
+      name: "Rahul Sharma",
+      position: "HR Manager",
+    },
+    {
+      key: 2,
+      name: "Anita Verma",
+      position: "Talent Acquisition",
+    },
+    {
+      key: 3,
+      name: "Rani Sharma",
+      position: "Recruitment Lead",
+    },
+    {
+      key: 4,
+      name: "Amit Patil",
+      position: "Senior HR",
+    },
+  ];
+
   return (
-    <div>
-      <h2>Recruiters</h2>
-      <Table dataSource={dataSource} columns={columns} />
-    </div>
+    <Card
+      title="Recruiter Management"
+      bordered={false}
+    >
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{ pageSize: 5 }}
+      />
+    </Card>
   );
 };
 
