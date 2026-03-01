@@ -9,10 +9,10 @@ import Brousejob from "../wellcomePage/Browsejob";
 // import Footer from "../wellcomePage/Footer";
 import Browsejob from "../wellcomePage/Browsejob";
 import AppLayout from "../layout/AppLayout";
-import JobDetails from "../dashboards/user/JobDetails";
+// import JobDetails from "../dashboards/user/JobDetails";
 import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
-import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
-import ViewCandidates from "../dashboards/recruiter/ViewCandidates";
+// import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
+// import ViewCandidates from "../dashboards/recruiter/ViewCandidates";
 
 
 
