@@ -145,3 +145,51 @@ id: 2,
 
   ];
   export default initialData;
+
+
+
+
+  
+  export interface Jobdata {
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  type?: string;
+  experience?: string;
+}
+
+   export const jobdata: Jobdata[] = [
+  {
+    id:1,
+    title: "Frontend Developer",
+    company: "Accenture",
+    location: "Pune",
+    type: "Full Time",
+    experience: "1-3 Years",
+  },
+  {
+    id:2,
+    title: "Backend Developer",
+    company: "TCS",
+    location: "Mumbai",
+    type: "Full Time",
+    experience: "2-4 Years",
+  },
+  {
+    id:3,
+    title: "React Developer",
+    company: "Infosys",
+    location: "Bangalore",
+    type: "Hybrid",
+    experience: "1-2 Years",
+  },
+  {
+    id:4,
+    title: "UI / UX Designer",
+    company: "Wipro",
+    location: "Hyderabad",
+    type: "Remote",
+    experience: "Fresher",
+  },
+];

@@ -47,8 +47,12 @@ import Navbar from "../navbar/Navbar";
 import Home from "../Pages/Home";
 import About from "../Pages/About";
 import HowItsWorkpage from "../Pages/HowItsWorkpage";
-import BrowseJobs from "../Pages/BrouseJobs";
+import BrowseJobs from "../Pages/BrowseJobs";
+import BrouseJobs from "../Pages/BrowseJobs";
+import { NOTFOUND } from "dns";
+import NotFound from "../Pages/NotFound";
 // import Footer from "../footer/Footer";
+import ContactPage from "../Pages/ContactPage";
 
 
 export default function AppRoutes() {
@@ -101,12 +105,20 @@ export default function AppRoutes() {
         <Route path="/footer" element={<Footer/>} />
         {/* <Route path="/mockdata" element={<MockData/>} /> */}
         <Route path="/navbar" element={<Navbar/>} />
-<Route path="/homenew" element={<Home/>} />
- <Route path="/"element={<><Navbar /><Home /></>}/>
- <Route path="/about"element={<><About /></>}/>
- <Route path="/working"element={<><HowItsWorkpage /></>}/>
- <Route path="/brousejobs"element={<><BrowseJobs /></>}/>
+        <Route path="/homenew" element={<Home/>} />
+        <Route path="/"element={<><Navbar /><Home /></>}/>
+        <Route path="/about"element={<><About /></>}/>
+        <Route path="/working"element={<><HowItsWorkpage /></>}/>
+        <Route path="/brousejobs"element={<><BrowseJobs /></>}/>
+         <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<BrowseJobs />} />
+        <Route path="/contact" element={<ContactPage/>} />
 
+        {/* <Route path="/contact" element={<ContactPage/>} /> */}
+       <Route path="*" element={<NotFound />} />
+       {/* <Route path="/contact" element={<contact />} /> */}
+       
+  
 
 
         

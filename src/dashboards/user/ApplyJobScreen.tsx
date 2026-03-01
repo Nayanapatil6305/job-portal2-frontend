@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Steps, Button, Form, Input, Select, Row, Col } from "antd";
 import "../../components/Style/Applyjobs.css";
+import jsPDF from "jspdf";
+// import { DownloadOutlined } from "@ant-design/icons";
+
 
 // import Mokdata from "../mockdata/mockData.json";
 
@@ -16,6 +19,10 @@ const ApplyJobScreen: React.FC = () => {
   const [current, setCurrent] = useState(0);
   // const [current, setCurrent] = useState< 0 | 1 | 2 | 3 | 4 | 5>(0);
 
+ 
+
+  // Validation
+  
   const beforeVideoUpload = (file: File) => {
   const isVideo =
     file.type === "video/mp4" || file.type === "video/webm";
@@ -74,7 +81,61 @@ const ApplyJobScreen: React.FC = () => {
 
   const prev = () => setCurrent(current - 1);
 
+// after downlode button click function will start
+  const downloadApplicationPDf = async () => {
+  try {
+    // 🔹 सर्व form मधला data एकत्र घेतो
+    const allData = {
+      ...formProfile.getFieldsValue(),
+      ...formEducation.getFieldsValue(),
+      ...formExperience.getFieldsValue(),
+      ...formProfessional.getFieldsValue(),
+      ...formSkills.getFieldsValue(),
+      ...formResumee.getFieldsValue(),
+    };
+
+    // 🔹 PDF create
+    const pdf = new jsPDF();
+    let y = 15;
+
+    // 🔹 Title
+    pdf.setFontSize(16);
+    pdf.text("Job Application Form", 14, y);
+    y += 10;
+
+    // 🔹 Normal text size
+    pdf.setFontSize(11);
+
+    // 🔹 प्रत्येक field PDF मध्ये लिहितो
+    Object.entries(allData).forEach(([key, value]) => {
+  const displayValue = Array.isArray(value)
+    ? value.join(", ")
+    : value || "-";
+
+  pdf.text(`${key} : ${displayValue}`, 14, y);
+  y += 8;
+
+  if (y > 280) {
+    pdf.addPage();
+    y = 15;
+  }
+});
+
+    // 🔹 PDF download
+    pdf.save("Job_Application_Form.pdf");
+
+    // 🔹 Success message
+    message.success("Application downloaded successfully");
+
+  } catch (error) {
+    message.error("Please fill the form before download");
+  }
+};
+
+
+
   const submit = () => {
+
   forms[current]
     .validateFields()
     .then((values) => {
@@ -450,11 +511,38 @@ const ApplyJobScreen: React.FC = () => {
         {current < steps.length - 1 && (
           <Button type="primary" onClick={next}>Save & Continue</Button>
         )}
-        {current === steps.length - 1 && (
+        {/* {current === steps.length - 1 && (
           <Button type="primary" className="btn-submit" onClick={submit}>
             Submit Application
           </Button>
-        )}
+
+          
+        )} */}
+        {current === steps.length - 1 && (
+  <>
+    {/* <Button onClick={downloadLinkedInPDF}> */}
+     <Button
+      type="primary"
+      className="btn-submit"
+      onClick={submit}
+    >
+      Submit Application
+    </Button>
+    <Button onClick={downloadApplicationPDf}>
+      Download Application
+    </Button>
+
+    {/* <Button
+      type="primary"
+      className="btn-submit"
+      onClick={submit}
+    >
+      Submit Application
+    </Button> */}
+  </>
+)}
+
+        
       </div>
     </div>
   );
