@@ -33,6 +33,8 @@ import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
 import AdminDashboard from "../dashboards/admin/AdminDashboard";
 // import Homepage from "../wellcomePage/Homepage";
 // import Brousejob from "../wellcomePage/Browsejob";
+import Homepage from "../wellcomePage/Homepage";
+// import Brousejob from "../wellcomePage/Browsejob";
 // import About from "../wellcomePage/About";
 // import Contact from "../wellcomePage/Contact";
 // import Footer from "../wellcomePage/Footer";
@@ -54,6 +56,17 @@ import NotFound from "../Pages/NotFound";
 // import Footer from "../footer/Footer";
 import ContactPage from "../Pages/ContactPage";
 
+// import Login from "../authentication/Login";
+// import Register from "../authentication/Register";
+import ForgetPassword from "../components/common/auth/ForgetPassword";
+import MyApplications from "../dashboards/user/MyApplications";
+import ResumeBuilder from "../dashboards/user/ResumeBuilder";
+import JobManagement from "../dashboards/admin/JobManagement";
+import Login from "../components/common/auth/Login";
+import Register from "../components/common/auth/Register";
+
+import ApplyJobScreen1 from "../dashboards/user/ApplyJobScreen";
+import ApplyJobscreen1 from "../dashboards/user/ApplyJobScreen1";
 
 export default function AppRoutes() {
   return (
@@ -122,6 +135,11 @@ export default function AppRoutes() {
 
 
         
+
+      {/* USER ROUTES */}
+      <Route path="/user" element={<UserDashboard />} />
+      <Route path="/user/job/:id" element={<JobDetails />} />
+      <Route path="/user/apply" element={<ApplyJobscreen1 />} />
         {/* <Route path="/Contact" element={<Contact/>} />
          <Route path="/footer" element={<Footer/>}/> */}
        <Route path="*" element={<Navigate to="/homenew" replace />} />
@@ -131,9 +149,15 @@ export default function AppRoutes() {
             <Route path="/user" element={<UserDashboard />} />
             <Route path="/recruiter" element={<RecruiterDashboard />} />
             <Route path="/layout" element={<AppLayout />} />
+           {/* <Route path="/user/job/:id" element={<JobDetails/>} /> */}
 
 
-             <Route path="/user/job/:id" element={<JobDetails/>} />
+           <Route path="/login" element={<Login />}  />
+           <Route path="/register" element={<Register />} />
+           <Route path="/forgetpassword" element={<ForgetPassword />} />
+           <Route path="/myapplication" element={<MyApplications />} />
+           <Route path="/resumbuilder" element={<ResumeBuilder />} />
+           <Route path="/jobmanagement" element={<JobManagement />} />
 
 </Routes>
 
