@@ -70,7 +70,7 @@ const BrowseJobs = () => {
                 <p>{jobItem.company}</p>
                 <span>{jobItem.location}</span>
               </div>
-              <button className="apply-btn">Apply Now</button>
+              <button className="apply-btn" onClick={() => alert("Please register first")}>Apply Now</button>
             </div>
           ))
         ) : (

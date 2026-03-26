@@ -33,7 +33,7 @@ import RecruiterDashboard from "../dashboards/recruiter/RecruiterDashboard";
 import AdminDashboard from "../dashboards/admin/AdminDashboard";
 // import Homepage from "../wellcomePage/Homepage";
 // import Brousejob from "../wellcomePage/Browsejob";
-import Homepage from "../wellcomePage/Homepage";
+// import Homepage from "../wellcomePage/Homepage";
 // import Brousejob from "../wellcomePage/Browsejob";
 // import About from "../wellcomePage/About";
 // import Contact from "../wellcomePage/Contact";

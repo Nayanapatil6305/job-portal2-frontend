@@ -63,8 +63,13 @@ const Navbar: React.FC = () => {
             </ul>
 
             <div className="nav-actions">
+              <NavLink to="/register">
               <button className="register-btn">Register</button>
+               </NavLink>
+               <NavLink to="/login">
               <button className="login-btn">Login</button>
+              </NavLink>
+               
             </div>
           </>
         )}
@@ -114,8 +119,12 @@ const Navbar: React.FC = () => {
             </li>
 
             <li className="mobile-actions">
+              <NavLink to="/register" onClick={() => setIsMenuOpen(false)}>
               <button className="register-btn">Register</button>
+              </NavLink>
+              <NavLink to="/login" onClick={() => setIsMenuOpen(false)}>
               <button className="login-btn">Login</button>
+              </NavLink>
             </li>
           </ul>
         )}
