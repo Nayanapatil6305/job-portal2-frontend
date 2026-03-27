@@ -1,3 +1,20 @@
+// import { Typography } from "antd";
+
+// const Home = () => (
+//   <Typography.Title level={2} style={{ textAlign: "center" }}>
+//     Welcome to Job Portal
+//   </Typography.Title>
+// );
+
+// export default Home;
+// import React from 'react'
+
+// export default function Home() {
+//   return (
+//     <div>Home</div>
+//   )
+// }
+
 import "../components/Style/Home.css";
 import Navbar from "../navbar/Navbar";
 import microsoft from "../assets/logofour.png";
@@ -171,3 +188,4 @@ const [selectedCity, setSelectedCity] = useState("");
 };
 
 export default Home;
+>>>>>>> 53731cd4f74f452fd0521d291dda1b137fb50194
