@@ -1,16 +1,4 @@
-// export const applicationData = [
-//   {
-//     //object
-//     id: 1,
-//     name: 'John Doe',
-//     email: 'john.doe@example.com',
-//     course: 'React Development',
-//     progress: 85,
-//     status: 'active',
-//     joinDate: '2024-01-15',
-//     phone: '+912345678901',
-//     address: '123 Main St, New York, NY'
-//   },
+import React from 'react'
 
   export const data = [
     {
@@ -59,3 +47,8 @@
     status: "Open",
   },
 ];
+export default function Mocdata() {
+  return (
+    <div>Mocdata</div>
+  )
+}

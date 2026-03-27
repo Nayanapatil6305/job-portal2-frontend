@@ -1,0 +1,134 @@
+.about-wrapper {
+  /* background: #f4f6f9; */
+   background: radial-gradient(
+    circle at top,
+    #eef3fb 0%,
+    #f4f6f9 60%
+  );
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  /* height: 600px; */
+}
+
+.about-card {
+  background: #ffffff;
+  max-width: 1100px;
+  width: 100%;
+  border-radius: 16px;
+  padding: 60px;
+  /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08); */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.10);
+}
+
+.about-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0c2b57;
+  margin-bottom: 12px;
+}
+
+.about-desc {
+  font-size: 16px;
+  color: #555;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+.divider {
+  height: 1px;
+  background: #e3e8f0;
+  margin: 25px 0;
+}
+
+/* Mission Vision */
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.mv-card {
+  border: 1px solid #e6ebf2;
+  border-radius: 14px;
+  padding: 30px;
+  background: #fafcff;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.mv-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.mv-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0c2b57;
+}
+
+.mv-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Stats */
+.stats-box {
+  margin-top: 40px;
+  background: #f7f9fc;
+  border-radius: 14px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   border: 1px solid #e6ebf2;
+   box-shadow: inset 0 1px 0 #ffffff;
+}
+
+.stat {
+  text-align: center;
+  flex: 1;
+}
+
+.stat h2 {
+  font-size: 32px;
+  color: #0c2b57;
+  margin-bottom: 6px;
+}
+
+.stat span {
+  font-size: 14px;
+  color: #777;
+}
+
+.stat-line {
+  width: 1px;
+  height: 50px;
+  background: #dfe5ef;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-card {
+    padding: 40px 25px;
+  }
+
+  .stats-box {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .stat-line {
+    width: 60px;
+    height: 1px;
+  }
+}
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+  pointer-events: none;
+}
