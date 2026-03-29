@@ -188,4 +188,3 @@ const [selectedCity, setSelectedCity] = useState("");
 };
 
 export default Home;
->>>>>>> 53731cd4f74f452fd0521d291dda1b137fb50194
