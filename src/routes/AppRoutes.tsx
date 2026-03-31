@@ -135,50 +135,91 @@
 
 
 import { Routes, Route, Navigate } from "react-router-dom";
-
 /* ================= PUBLIC PAGES ================= */
-import Home from "../Pages/Home";
-import About from "../Pages/About";
-import ContactPage from "../Pages/ContactPage";
-import HowItsWorkpage from "../Pages/HowItsWorkpage";
-import BrowseJobs from "../Pages/BrowseJobs";
-import NotFound from "../Pages/NotFound";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import ContactPage from "../pages/ContactPage";
+import HowItsWorkpage from "../pages/HowItsWorkpage";
+import BrowseJobs from "../pages/BrowseJobs";
 
-/* ================= AUTH ================= */
-import Login from "../components/common/auth/Login";
-import Register from "../components/common/auth/Register";
+      /* ================= AUTH ROUTES ================= */
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 import ForgetPassword from "../components/common/auth/ForgetPassword";
 
-/* ================= LAYOUTS ================= */
-import AdminLayout from "../layout/admin/AdminLayout";
+
+// /* ================= LAYOUTS ================= */
 import UserLayout from "../layout/user/UserLayout";
+
+// /* ================= USER ================= */
+import Applications from "../pages/user/Applications";
+import Profile from "../pages/user/Profile";
+import SavedJobs from "../pages/user/SavedJobs";
+import Notifications from "../pages/user/Notifications";
+
+// /* ================= RECRUITER ================= */
 import RecruiterLayout from "../layout/recruiter/RecruiterLayout";
+import Candidates from "../pages/recruiter/Candidates";
+import PostedJobs from "../pages/recruiter/Posted-Jobs";
+import Interviews from "../pages/recruiter/Interviews";
+import PostJob from "../pages/recruiter/PostJob";
 
-/* ================= USER ================= */
-import UserDashboard from "../Pages/user/Dashboard";
-import UserJobs from "../Pages/user/Jobs";
-import Applications from "../Pages/user/Applications";
-import Profile from "../Pages/user/Profile";
-import UserSettings from "../Pages/user/Settings";
-import SavedJobs from "../Pages/user/SavedJobs";
-import Notifications from "../Pages/user/Notifications";
+// /* ================= ADMIN ================= */
+import AdminLayout from "../layout/admin/AdminLayout";
+import Recruiters from "../pages/admin/Recruiters";
+import JobSeekers from "../pages/admin/JobSeekers";
+import Jobs from "../pages/user/Jobs";
+import Reports from "../pages/recruiter/Reports";
+import Settings from "../pages/user/Settings";
 
-/* ================= RECRUITER ================= */
-import RecruiterDashboard from "../Pages/recruiter/Dashboard";
-import Candidates from "../Pages/recruiter/Candidates";
-import PostedJobs from "../Pages/recruiter/Posted-Jobs";
-import Interviews from "../Pages/recruiter/Interviews";
-import RecruiterReports from "../Pages/recruiter/Reports";
-import RecruiterSettings from "../Pages/recruiter/Settings";
-import PostJob from "../Pages/recruiter/PostJob";
+      /* ================= 404 ================= */
+import NotFound from "../pages/NotFound";
 
-/* ================= ADMIN ================= */
-import AdminDashboard from "../Pages/admin/Dashboard";
-import Recruiters from "../Pages/admin/Recruiters";
-import JobSeekers from "../Pages/admin/JobSeekers";
-import Jobs from "../Pages/admin/Jobs";
-import Reports from "../Pages/admin/Reports";
-import Settings from "../Pages/admin/Settings";
+
+
+/* ================= PUBLIC PAGES ================= */
+// import Home from "../Pages/Home";
+// import About from "../Pages/About";
+// import ContactPage from "../Pages/ContactPage";
+// import HowItsWorkpage from "../Pages/HowItsWorkpage";
+// import BrowseJobs from "../Pages/BrowseJobs";
+// import NotFound from "../Pages/NotFound";
+
+// /* ================= AUTH ================= */
+// import Login from "../components/common/auth/Login";
+// import Register from "../components/common/auth/Register";
+// import ForgetPassword from "../components/common/auth/ForgetPassword";
+
+// /* ================= LAYOUTS ================= */
+// import AdminLayout from "../layout/admin/AdminLayout";
+// import UserLayout from "../layout/user/UserLayout";
+// import RecruiterLayout from "../layout/recruiter/RecruiterLayout";
+
+// /* ================= USER ================= */
+// import UserDashboard from "../Pages/user/Dashboard";
+// import UserJobs from "../Pages/user/Jobs";
+// import Applications from "../Pages/user/Applications";
+// import Profile from "../Pages/user/Profile";
+// import UserSettings from "../Pages/user/Settings";
+// import SavedJobs from "../Pages/user/SavedJobs";
+// import Notifications from "../Pages/user/Notifications";
+
+// /* ================= RECRUITER ================= */
+// import RecruiterDashboard from "../Pages/recruiter/Dashboard";
+// import Candidates from "../Pages/recruiter/Candidates";
+// import PostedJobs from "../Pages/recruiter/Posted-Jobs";
+// import Interviews from "../Pages/recruiter/Interviews";
+// import RecruiterReports from "../Pages/recruiter/Reports";
+// import RecruiterSettings from "../Pages/recruiter/Settings";
+// import PostJob from "../Pages/recruiter/PostJob";
+
+// /* ================= ADMIN ================= */
+// import AdminDashboard from "../Pages/admin/Dashboard";
+// import Recruiters from "../Pages/admin/Recruiters";
+// import JobSeekers from "../Pages/admin/JobSeekers";
+// import Jobs from "../Pages/admin/Jobs";
+// import Reports from "../Pages/admin/Reports";
+// import Settings from "../Pages/admin/Settings";
 
 export default function AppRoutes() {
   return (
